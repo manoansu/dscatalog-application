@@ -53,10 +53,6 @@
     .home-image-container svg{
         width: 506px;
     }
-
-    .home-content-container button{
-        width: 506px;
-    }
 }
 
 @media(min-width: 768px){

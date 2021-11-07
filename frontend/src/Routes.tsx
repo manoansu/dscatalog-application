@@ -1,7 +1,7 @@
 import Navbar from "components/Navbar";
 import Admin from "pages/Admin";
 import Home from "pages/Home";
-import Catalog from "pages/Home/Catalog";
+import Catalog from "pages/Catalog";
 import { BrowserRouter, Switch,  Route } from "react-router-dom";
 
 const Routes = () => (
