@@ -2,7 +2,7 @@ import Navbar from "components/Navbar";
 import Admin from "pages/Admin";
 import Home from "pages/Home";
 import Catalog from "pages/Catalog";
-import { BrowserRouter, Switch,  Route } from "react-router-dom";
+import { BrowserRouter, Switch,  Route, Redirect } from "react-router-dom";
 import ProductDatails from "pages/ProductDetails";
 
 const Routes = () => (
@@ -18,6 +18,7 @@ const Routes = () => (
             <Route path="/products/:productId">
                 <ProductDatails />
             </Route>
+            <Redirect from="/admin" to="/admin/products" exact />
             <Route path="/admin">
                 <Admin />
             </Route>
