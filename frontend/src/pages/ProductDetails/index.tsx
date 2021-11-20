@@ -2,8 +2,26 @@ import './styles.css';
 import ProductPrice from 'components/ProductPrice';
 import { Link } from "react-router-dom";
 import { ReactComponent as ArrowIcon } from '../../assets/images/arrow.svg';
+import { Product } from 'type/products';
+import axios from 'axios';
+import { BASE_URL } from 'util/request';
+import { useEffect, useState } from 'react';
 
 const ProductDatails = () => {
+
+    // Declara o estado do componente usando o useState.
+    const[product, setProduct] = useState<Product>();
+
+    // Amarar o componente do react usando useEffect.
+    useEffect(() => {
+        axios.get(BASE_URL + '/products/1')
+        .then(response =>{
+            setProduct(response.data)
+        });
+    },
+    []);
+    
+
     return(
         <div className="product-details-container">
             <div className="base-card product-details-card">
@@ -16,17 +34,18 @@ const ProductDatails = () => {
                 <div className="row">
                     <div className="col-xl-6">
                         <div className="img-container">
-                            <img src="https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/2-big.jpg" alt="Product name" />
+                            <img src={product?.imgUrl}
+                            alt={product?.name} />
                         </div>
                         <div className="name-price-container">
-                            <h1>Product Name</h1>
-                            <ProductPrice price={2458.26}/>
+                            <h1>{product?.name}</h1>
+                            {product && <ProductPrice price={product?.price}/>}
                         </div>
                     </div>
                     <div className="col-xl-6">
                         <div className="description-container">
                             <h2>Product Description</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem qui quod est labore maiores facere magnam hic dolorem fuga quasi ad aut dolorum beatae laudantium numquam repellat sint, ratione saepe!</p>
+                            <p>{product?.description}</p>
                         </div>
                     </div>
                 </div>
