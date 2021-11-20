@@ -1,7 +1,15 @@
+import './styles.css';
+import Navbar from './Navbar';
+
 const Admin = () =>{
 
     return(
-        <h1>Admin webv page!</h1>
+        <div className="admin-container">
+            <Navbar />        
+            <div className="admin-content">
+                <h1>Content</h1>
+            </div>
+        </div>
     );
 };
 
