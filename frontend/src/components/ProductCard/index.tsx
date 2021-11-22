@@ -1,6 +1,6 @@
 import './styles.css';
 import ProductPrice from 'components/ProductPrice';
-import { Product } from 'type/products';
+import { Product } from 'types/products';
 
 type Props ={
     product: Product;

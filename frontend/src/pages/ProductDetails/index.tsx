@@ -2,7 +2,7 @@ import './styles.css';
 import ProductPrice from 'components/ProductPrice';
 import { Link, useParams } from "react-router-dom";
 import { ReactComponent as ArrowIcon } from '../../assets/images/arrow.svg';
-import { Product } from 'type/products';
+import { Product } from 'types/products';
 import axios from 'axios';
 import { BASE_URL } from 'util/request';
 import { useEffect, useState } from 'react';
