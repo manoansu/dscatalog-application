@@ -1,25 +1,31 @@
 import './styles.css';
 import ProductPrice from 'components/ProductPrice';
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ReactComponent as ArrowIcon } from '../../assets/images/arrow.svg';
 import { Product } from 'type/products';
 import axios from 'axios';
 import { BASE_URL } from 'util/request';
 import { useEffect, useState } from 'react';
 
+type UrlParams = {
+    productId: string;
+}
+
 const ProductDatails = () => {
+
+    const { productId } = useParams<UrlParams>();
 
     // Declara o estado do componente usando o useState.
     const[product, setProduct] = useState<Product>();
 
     // Amarar o componente do react usando useEffect.
     useEffect(() => {
-        axios.get(BASE_URL + '/products/1')
+        axios.get(`${BASE_URL}/products/${productId}`)
         .then(response =>{
             setProduct(response.data)
         });
     },
-    []);
+    [productId]);
     
 
     return(
