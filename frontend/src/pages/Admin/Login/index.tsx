@@ -1,10 +1,10 @@
 import "./styles.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import ButtonIcon from "components/ButtonIcon";
 import { useForm } from "react-hook-form";
 import { getAuthData, requestBackendLogin, saveAuthData } from "util/request";
 import { useState } from "react";
-import { Pattern } from "react-native-svg";
+
 
 type FormData ={
     username: string;
@@ -17,6 +17,9 @@ const Login = () => {
 
     const { register, handleSubmit, formState: {errors} } = useForm<FormData>();
 
+    // pega historico de user para redirecionar na tela desejada..
+    const history = useHistory();
+
     const onSubmit = (formData : FormData) =>{
       // faz a requisiçãp de user no BD.
       requestBackendLogin(formData)
@@ -26,6 +29,8 @@ const Login = () => {
           console.log('TOKEN GERADO: ' + token);
           setHasError(false);
           console.log('SUCESSO',response);
+          // redireciona a tela de login para tela admin..
+          history.push('/admin');
         })
         .catch(error =>{
           setHasError(true);
