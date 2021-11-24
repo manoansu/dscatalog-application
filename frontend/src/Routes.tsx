@@ -2,12 +2,13 @@ import Navbar from "components/Navbar";
 import Admin from "pages/Admin";
 import Home from "pages/Home";
 import Catalog from "pages/Catalog";
-import { BrowserRouter, Switch,  Route, Redirect } from "react-router-dom";
+import { Router, Switch,  Route, Redirect } from "react-router-dom";
 import ProductDatails from "pages/ProductDetails";
 import Auth from "pages/Admin/Auth";
+import history from "./util/history";
 
 const Routes = () => (
-    <BrowserRouter>
+    <Router history={history}>
         <Navbar />
         <Switch>
             <Route path="/" exact>
@@ -29,6 +30,6 @@ const Routes = () => (
             </Route>
         </Switch>
 
-    </BrowserRouter>
+    </Router>
 );
 export default Routes;
