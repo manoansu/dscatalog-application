@@ -118,3 +118,17 @@ axios.interceptors.response.use(function (response) {
       const tokenData = getTokenData();
       return (tokenData && tokenData.exp * 1000 > Date.now()) ? true : false;
   }
+
+  export const hasAnyRole = (roles: Role[]) : boolean =>{
+
+    if(roles.length === 0){
+        return true;
+    }
+
+    const tokeData = getTokenData();
+
+    if(tokeData !== undefined){
+        return roles.some(role => tokeData.authorities.includes(role));
+    }
+    return false;
+  }

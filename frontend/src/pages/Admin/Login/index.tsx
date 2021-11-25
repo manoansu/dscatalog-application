@@ -18,11 +18,11 @@ type LocationState = {
 
 const Login = () => {
 
-  const location = useLocation<LocationState>();
+    const location = useLocation<LocationState>();
 
-  const { from } = location.state || { from: { pathname: '/admin' }};
+    const { from } = location.state || { from: { pathname: '/admin' }};
 
-  const { setAuthContextData } = useContext(AuthContext);
+    const { setAuthContextData } = useContext(AuthContext);
 
     const [hasError, setHasError] = useState(false);
 
