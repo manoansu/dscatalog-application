@@ -1,6 +1,15 @@
 import axios, { AxiosRequestConfig } from "axios";
+import jwtDecode from "jwt-decode";
 import qs from "qs";
 import history from "./history";
+
+type Role = 'ROLE_OPERATOR' | 'ROLE_ADMIN';
+
+type TokenData = {
+    exp: number;
+    user_name: string;
+    authorities: Role[];
+}
 
 type LoginResponse ={
     access_token: string;
@@ -74,6 +83,7 @@ axios.interceptors.request.use(function (config) {
     return Promise.reject(error);
   });
 
+  
 // Add a response interceptor
 axios.interceptors.response.use(function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
@@ -89,3 +99,18 @@ axios.interceptors.response.use(function (response) {
     console.log('INTERCEPTOR RESPOSTA COM ERRO');
     return Promise.reject(error);
   });
+
+  export const getTokenData = () : TokenData | undefined => {
+    try{
+        return jwtDecode(getAuthData().access_token);
+    }
+    catch(error) {
+        return undefined;
+    }
+  }
+
+  // Funçao que verifica se user esta autenicado..
+  export const isAuthenticated = () => {
+      const tokenData = getTokenData();
+      return (tokenData && tokenData.exp * 1000 > Date.now()) ? true : false;
+  }
