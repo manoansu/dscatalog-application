@@ -2,7 +2,7 @@ import './styles.css';
 import ProductPrice from 'components/ProductPrice';
 import { Link, useParams } from "react-router-dom";
 import { ReactComponent as ArrowIcon } from '../../assets/images/arrow.svg';
-import { Product } from 'types/products';
+import { Product } from 'types/product';
 import axios from 'axios';
 import { BASE_URL } from 'util/request';
 import { useEffect, useState } from 'react';
@@ -24,8 +24,11 @@ const ProductDatails = () => {
     // Amarar o componente do react usando useEffect.
     useEffect(() => {
         setIsLoading(true);
+        console.log('Path == ')
+        console.log( `${BASE_URL}/products/${productId}`);
         axios.get(`${BASE_URL}/products/${productId}`)
         .then(response =>{
+            console.log('get URL' + response.data);
             setProduct(response.data)
         })
         .finally(() => {

@@ -18,7 +18,7 @@ export const requestBackendLogin = (loginData : LoginData) =>{
     // Dados de Headers no Postman que utilizamos para requisição no login de use, usando (Key and Value).
     const headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: 'Basic ' + window.btoa(CLIENT_ID + ':' + CLIENT_SECRET)
+        Authorization: 'Basic ' + window.btoa(CLIENT_ID + ':' + CLIENT_SECRET),
     }
 
     // Dados de Body no Postman que utilizamos para requisição no login de user usando (Key and Value).
@@ -38,9 +38,9 @@ export const requestBackend = (config: AxiosRequestConfig) => {
     ? {
         ...config.headers,
         Authorization: 'Bearer ' + getAuthData().access_token,
+                
     } 
     : config.headers;
-
     return axios({ ...config, baseURL: BASE_URL, headers });
 }
 
@@ -48,6 +48,7 @@ export const requestBackend = (config: AxiosRequestConfig) => {
 axios.interceptors.request.use(function (config) {
     // Do something before request is sent
     console.log('INTERCEPTOR ANTES DA REQUISIÇÂO');
+    console.log('config data  == ' + config.data);
     return config;
   }, function (error) {
     // Do something with request error
@@ -61,6 +62,7 @@ axios.interceptors.response.use(function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
     console.log('INTERCEPTOR RESPOSTA COM SUCESSO');
+    console.log('respose status == ' + response.status);
     return response;
   }, function (error) {
       if(error.response.status === 401 || error.response.status === 403){
