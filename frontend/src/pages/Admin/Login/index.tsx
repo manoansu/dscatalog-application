@@ -9,7 +9,7 @@ import { saveAuthData } from "util/storage";
 import { getTokenData } from "util/auth";
 
 
-type FormData ={
+type CredentialsDTO ={
     username: string;
     password: string;
 }
@@ -28,12 +28,12 @@ const Login = () => {
 
     const [hasError, setHasError] = useState(false);
 
-    const { register, handleSubmit, formState: {errors} } = useForm<FormData>();
+    const { register, handleSubmit, formState: {errors} } = useForm<CredentialsDTO>();
 
     // pega historico de user para redirecionar na tela desejada..
     const history = useHistory();
 
-    const onSubmit = (formData : FormData) =>{
+    const onSubmit = (formData : CredentialsDTO) =>{
       // faz a requisiçãp de user no BD.
       requestBackendLogin(formData)
         .then(response =>{

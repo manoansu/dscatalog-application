@@ -11,7 +11,6 @@ export type TokenData = {
 
  export const getTokenData = () : TokenData | undefined => {
     try{
-        console.log('getAuthData access_token == ' + getAuthData().access_token);
         return jwtDecode(getAuthData().access_token);
     }
     catch(error) {
@@ -22,7 +21,6 @@ export type TokenData = {
   // Funçao que verifica se user esta autenicado..
   export const isAuthenticated = () => {
       const tokenData = getTokenData();
-      console.log('tokenData == ' + tokenData?.user_name);
       return (tokenData && tokenData.exp * 1000 > Date.now()) ? true : false;
   }
 
@@ -31,7 +29,6 @@ export type TokenData = {
     if(roles.length === 0){
         return true;
     }
-
     const tokeData = getTokenData();
 
     if(tokeData !== undefined){

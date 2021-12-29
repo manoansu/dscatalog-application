@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
@@ -22,15 +23,19 @@ public class ProductDTO implements Serializable {
 	@NotBlank(message = "Field NAME is required!")
 	@Size(min = 3, max = 60, message = "Field NAME must have min 3 and max 50 characters!")
 	private String name;
+	
+	@NotBlank(message = "Field DESCIPTION is required!")
 	private String description;
 	
 	@Positive(message = "Field PRICE must be Positive!")
 	private Double price;
+	
 	private String imgUrl;
 	
 	@PastOrPresent(message = "The product DATE should be actual!")
 	private Instant date;
 
+	@NotEmpty(message = "uncategorized product is not allowed!")
 	List<CategoryDTO> categories = new ArrayList<>();
 
 	public ProductDTO() {
