@@ -28,8 +28,10 @@ const Form = () =>{
         // faz a requisiçãp de user no BD.
         requestBackend(config)
           .then((response) =>{
+            history.push("/admin/products");
             console.log(response.data);
             });
+            console.log("Error to saved product!")
       };
 
       const handleCancel = () =>{
