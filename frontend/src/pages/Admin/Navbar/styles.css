@@ -1,9 +1,9 @@
-ul{
+.admin-nav-items-container{
     display: flex;
     justify-content: space-around;
     list-style-type: none;
-    padding: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 .admin-nav-container{
@@ -40,7 +40,7 @@ ul{
 }
 
 @media(min-width:1200px){
-    ul{
+    .admin-nav-items-container{
         flex: unset;
         flex-direction: column;
     }

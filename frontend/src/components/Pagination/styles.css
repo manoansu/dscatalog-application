@@ -4,7 +4,7 @@
     align-items: center;
 }
 
-.paginatio-item{
+.pagination-item{
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -21,12 +21,18 @@
 
 .arrow-previous{
     transform: rotate(-180deg);
+    color: #407bff;;
 }
 .arrow-next{
     margin-left:10px;
+    color: #407bff;;
 }
 
-.paginatio-item.active{
+.pagination-item.active{
+    background-color: #407bff;
+}
+
+.pagination-link-active{
     background-color: #407bff;
 }
 
