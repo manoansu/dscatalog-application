@@ -22,12 +22,6 @@
         margin-bottom: 40px;
     }
 
-    .product-filter-container{
-        margin-left: 20px;
-        flex: 1;
-        margin-bottom: 0;
-    }
-
     .btn-crud-add{
         height: 60px;
         margin-bottom: 0;
