@@ -32,7 +32,7 @@ const ProductFilter = () =>{
 
     return(
         <div className='base-card product-filter-container'>
-            <form onSubmit={handleSubmit(onSubmit)} className='product.filter-form'>
+            <form onSubmit={handleSubmit(onSubmit)} className='product-filter-form'>
                 <div className="product-filter-name-container">
                     <input 
                     {...register("name")}

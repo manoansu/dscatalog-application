@@ -38,6 +38,8 @@
 .btn-product-filter-clear{
     font-weight: bold;
     border-radius: 10px;
+    width: 111.67px;
+    height: 40px;
 }
 
 .btn-product-filter-word{
@@ -67,9 +69,35 @@
 }
 
 @media(min-width:768px){
+    .product-filter-form{
+        margin-top: 10px;
+    }
+    .btn-product-filter-word{
+        display: none;
+    }
     .product-filter-container{
         margin-left: 20px;
         flex: 1;
         margin-bottom: 0;
+        padding: 10px 15px;
+    }
+
+    .product-filter-form{
+        display: flex;
+    }
+
+    .product-filter-name-container{
+        flex: 1;
+        margin-right: 10px;
+    }
+
+    .product-filter-bottom-container{
+        flex: 1;
+    }
+}
+
+@media(min-width:992px){
+    .btn-product-filter-word{
+        display: unset;
     }
 }
