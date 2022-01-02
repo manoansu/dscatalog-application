@@ -7,10 +7,11 @@ import { Product } from 'types/product';
 import { AxiosRequestConfig } from 'axios';
 import { requestBackend } from 'util/request';
 import Pagination from 'components/Pagination';
-import ProductFilter from 'components/ProductFilter';
+import ProductFilter, { ProductFilterData } from 'components/ProductFilter';
 
 type ControlComponentsData = {
     activePage: number;
+    filterData: ProductFilterData;
 }
 
 const List = () =>{
@@ -19,13 +20,21 @@ const List = () =>{
 
     const [controlComponentsData, setControlComponentsData] = useState<ControlComponentsData>(
         {
-            activePage: 0
+            activePage: 0,
+            filterData: {name: '', category: null}
         }
     );
 
+    // Função que trata a mudança de evento da pagina..
     const handlePageChange = (pageNumber: number) => {
-        setControlComponentsData( {activePage:pageNumber});
-    }
+        setControlComponentsData( {activePage:pageNumber, filterData: controlComponentsData.filterData});
+    };
+
+    // Função que trata a mudança de evento do filtro...
+    const handleSubmitFilter = (data: ProductFilterData) =>{
+        setControlComponentsData( {activePage:0, filterData: data});
+    };
+    
 
    const getProducts = useCallback(() => {
        //Faz quealquer requisição usando o endpoint e o verbo desejado..
@@ -35,6 +44,8 @@ const List = () =>{
         params: {
             page: controlComponentsData.activePage,
             size: 3,
+            name: controlComponentsData.filterData.name,
+            category: controlComponentsData.filterData.category?.id
         }
     };
 
@@ -56,8 +67,8 @@ const List = () =>{
                     <button className="btn btn-primary text-white btn-crud-add">ADICIONAR</button>
                 </Link>
 
-                <ProductFilter />
-                
+                <ProductFilter onSubmitFilter={handleSubmitFilter} />
+
             </div>
 
             <div className='row'>
@@ -67,7 +78,8 @@ const List = () =>{
                 </div>
                 ))}                
             </div>
-            <Pagination 
+            <Pagination
+                forcePage={page?.number} 
                 pageCount={(page) ? page.totalPages: 0}
                 range={3}
                 onChange={handlePageChange}
