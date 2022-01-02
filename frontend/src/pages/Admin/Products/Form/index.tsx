@@ -1,3 +1,4 @@
+import './styles.css';
 import { AxiosRequestConfig } from 'axios';
 import { useEffect, useState } from 'react';
 import CurrencyInput from 'react-currency-input-field';
@@ -7,7 +8,8 @@ import Select from 'react-select';
 import { Category } from 'types/category';
 import { Product } from 'types/product';
 import { requestBackend } from 'util/request';
-import './styles.css';
+import { toast } from 'react-toastify';
+
 
 type UrlParams = {
     productId: string;
@@ -56,18 +58,21 @@ const Form = () =>{
         const categoriesData = {...formData, price: String(formData.price).replace(',', '.') }
         const config: AxiosRequestConfig = {
             method: isEditing ? 'PUT' : 'POST',
-            url: isEditing ? `/products/${productId}` : '/products',
+            url: isEditing ? `/products/${productId}` : '/productsx',
             data: categoriesData,
             withCredentials: true
         };
 
-        // faz a requisiçãp de user no BD.
+        // faz a requisiçãp de user no BD se for suceso entra no them caso contrario nao entra..
         requestBackend(config)
           .then((response) =>{
+            toast.info('produto cadastrado com sucesso!');
             history.push("/admin/products");
             console.log(response.data);
+            })
+            .catch(() =>{
+                toast.error('Erro ao cadastrar produto');
             });
-            console.log("Error to saved product!")
       };
 
       const handleCancel = () =>{
